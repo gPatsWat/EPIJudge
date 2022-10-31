@@ -1,0 +1,4 @@
+{
+    "cmake.sourceDirectory": "${workspaceFolder}/epi_judge_cpp",
+    "dotnetAcquisitionExtension.enableTelemetry": false
+}
