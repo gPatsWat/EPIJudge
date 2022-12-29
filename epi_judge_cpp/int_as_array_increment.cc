@@ -3,8 +3,17 @@
 #include "test_framework/generic_test.h"
 using std::vector;
 vector<int> PlusOne(vector<int> A) {
-  // TODO - you fill in here.
-  return {};
+  int sz = A.size()-1, i = sz;
+  while(A[i] == 9) {
+    A[i] = 0;
+    if(i == 0) {
+        A.insert(A.begin(), 0);
+        break;
+    }
+    else i--;
+  }
+    A[i]++;
+  return A;
 }
 
 int main(int argc, char* argv[]) {

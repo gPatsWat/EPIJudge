@@ -3,7 +3,12 @@
 #include "test_framework/generic_test.h"
 using std::vector;
 void ApplyPermutation(vector<int> perm, vector<int>* A_ptr) {
-  // TODO - you fill in here.
+  vector<int> newvec((*A_ptr).size(), 0);
+  for(int i = 0;i < (*A_ptr).size();i++) {
+    newvec[perm[i]] = (*A_ptr)[i];
+  }
+  (*A_ptr).clear();
+  (*A_ptr).assign(newvec.begin(), newvec.end());
   return;
 }
 vector<int> ApplyPermutationWrapper(const vector<int>& perm, vector<int> A) {
