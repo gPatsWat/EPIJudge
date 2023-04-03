@@ -1,22 +1,66 @@
 #include "test_framework/generic_test.h"
 #include "test_framework/serialization_traits.h"
 #include "test_framework/test_failure.h"
+#include <cstddef>
+#include <cstdlib>
+#include <limits>
+#include <stdexcept>
+#include <algorithm>
+
 class Queue {
  public:
-  Queue(size_t capacity) {}
+  int head,tail,num;
+  std::vector<int> v;
+
+  Queue(size_t capacity) {
+    head = 0;
+    tail = 0;
+    num = 0;
+    v.resize(capacity);
+  }
+
+  bool isEmpty() {
+    if(num == 0) {
+      return true;
+    }
+    return false;
+  }
+
+  bool isFull() {
+    if(num == v.size()) {
+      return true;
+    }
+    return false;
+  }
+
   void Enqueue(int x) {
-    // TODO - you fill in here.
+    v[tail] = x;
+    num++;
+    if(isFull()) {
+        std::rotate(v.begin(), v.begin()+head, v.end());
+        head = 0;
+        tail = v.size()-1;
+        v.resize(v.size()*2);
+    }
+    tail = (tail+1)%v.size();
     return;
   }
+
   int Dequeue() {
-    // TODO - you fill in here.
-    return 0;
+    if(isEmpty()) {
+      throw std::length_error("empty queue");
+    }
+    int temp = v[head];
+    head = (head+1)%v.size();
+    num--;
+    return temp;
   }
+
   int Size() const {
-    // TODO - you fill in here.
-    return 0;
+    return num;
   }
 };
+
 struct QueueOp {
   enum class Operation { kConstruct, kDequeue, kEnqueue, kSize } op;
   int argument;

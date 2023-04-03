@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cstdlib>
 #include <functional>
 #include <iterator>
 #include <numeric>
@@ -10,11 +11,29 @@
 using std::bind;
 using std::iota;
 using std::vector;
+
 // Returns a random k-sized subset of {0, 1, ..., n - 1}.
 vector<int> RandomSubset(int n, int k) {
-  // TODO - you fill in here.
-  return {};
+  vector<int> ans(n, 0);
+  std::unordered_set<int> mp;
+
+  int i = 0;
+
+  while(i < n) {
+    int num = rand()%n;
+     if(mp.find(num) != mp.end()) {
+      continue;
+     }
+     else {
+      mp.insert(num);
+      ans[i] = num;
+      i++;
+     }
+  }
+
+  return ans;
 }
+
 bool RandomSubsetRunner(TimedExecutor& executor, int n, int k) {
   using namespace test_framework;
   vector<vector<int>> results;

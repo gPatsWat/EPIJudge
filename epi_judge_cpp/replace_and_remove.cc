@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iterator>
 #include <string>
 #include <vector>
@@ -8,8 +9,15 @@ using std::string;
 using std::vector;
 
 int ReplaceAndRemove(int size, char s[]) {
-  // TODO - you fill in here.
-  return 0;
+  string str;
+  if(size == 0) return 0;
+  for(int i = 0;i<size;i++) {
+    if(s[i] == 'a')str.append("dd");
+    else if(s[i] == 'b') continue;
+    else str.push_back(s[i]);
+  }
+  std::copy(str.begin(), str.end(), s);
+  return str.size();
 }
 vector<string> ReplaceAndRemoveWrapper(TimedExecutor& executor, int size,
                                        const vector<string>& s) {

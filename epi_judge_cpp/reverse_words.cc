@@ -1,3 +1,5 @@
+#include <algorithm>
+#include <sstream>
 #include <string>
 
 #include "test_framework/generic_test.h"
@@ -5,7 +7,17 @@
 using std::string;
 
 void ReverseWords(string* s) {
-  // TODO - you fill in here.
+  // First, reverses the whole string.
+  reverse(begin(*s), end(*s));
+
+  size_t start = 0, finish;
+  while ((finish = s->find(" ", start)) != string::npos) {
+    // Reverses each word in the string.
+    reverse(begin(*s) + start, begin(*s) + finish);
+    start = finish + 1;
+  }
+  // Reverses the last word.
+  reverse(begin(*s) + start, end(*s));
   return;
 }
 string ReverseWordsWrapper(TimedExecutor& executor, string s) {
