@@ -1,10 +1,53 @@
+#include <regex>
+#include <sstream>
 #include <string>
 
 #include "test_framework/generic_test.h"
 using std::string;
+
 string ShortestEquivalentPath(const string& path) {
-  // TODO - you fill in here.
-  return "";
+  if (path.empty()) return "";
+  if (path == "..") return "..";
+  if (path == ".") return ".";
+
+  bool starts_root = false;
+  if (path[0] == '/') starts_root = true;
+
+  string token;
+  std::stringstream ss(path);
+  char delim = '/';
+
+  std::deque<string> st;
+
+  while (std::getline(ss, token, delim)) {
+    if (token == "") {
+      continue;
+    } else if (token == ".") {
+      continue;
+    } else if (token == "..") {
+      if (st.empty() || st.front() == "..") {
+        st.push_back(token);
+      }
+      else st.pop_front();
+    }
+    else {
+      st.push_front(token);
+    }
+
+  }
+
+  string retval = "";
+  if (starts_root) retval = "/";
+
+  while(!st.empty()) {
+    retval += st.back();
+    st.pop_back();
+    retval += "/";
+  }
+
+  if (retval.size() > 1)
+    retval.erase(retval.size()-1);
+  return retval;
 }
 
 int main(int argc, char* argv[]) {
