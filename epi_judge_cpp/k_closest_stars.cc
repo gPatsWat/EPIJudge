@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <cmath>
+#include <queue>
 #include <vector>
 
 #include "test_framework/generic_test.h"
@@ -20,8 +21,25 @@ struct Star {
 vector<Star> FindClosestKStars(vector<Star>::const_iterator stars_begin,
                                const vector<Star>::const_iterator& stars_end,
                                int k) {
-  // TODO - you fill in here.
-  return {};
+  std::priority_queue<Star>pq;
+  for(auto iter = stars_begin;iter != stars_end;iter++) {
+    if(pq.size() < k) {
+      pq.push(*iter);
+    }
+    else if(pq.size() == k) {
+      if(*iter < pq.top()) {
+        pq.pop();
+        pq.push(*iter);
+      }
+    }
+    else assert(false);
+  }
+  vector<Star> ans;
+  while(!pq.empty()) {
+    ans.push_back(pq.top());
+    pq.pop();
+  }
+  return ans;
 }
 
 namespace test_framework {

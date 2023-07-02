@@ -1,12 +1,20 @@
+#include <limits>
 #include <memory>
 
 #include "binary_tree_node.h"
+#include "binary_tree_with_parent_prototype.h"
 #include "test_framework/generic_test.h"
 using std::unique_ptr;
 
+bool isBSTUtil(BinaryTreeNode<int>* tree, int mn, int mx) {
+  if(tree == nullptr) return true;
+
+  if(tree->data >= mn && tree->data <= mx && isBSTUtil(tree->left.get(), mn, tree->data) && isBSTUtil(tree->right.get(), tree->data, mx)) return true;
+  return false;
+}
+
 bool IsBinaryTreeBST(const unique_ptr<BinaryTreeNode<int>>& tree) {
-  // TODO - you fill in here.
-  return true;
+  return isBSTUtil(tree.get(), std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
 }
 
 int main(int argc, char* argv[]) {

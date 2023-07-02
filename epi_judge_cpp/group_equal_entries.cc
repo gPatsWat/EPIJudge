@@ -16,7 +16,6 @@ struct Person {
 };
 
 void GroupByAge(vector<Person>* people) {
-  // TODO - you fill in here.
   return;
 }
 

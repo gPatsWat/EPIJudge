@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <memory>
 #include <vector>
 
@@ -15,8 +16,16 @@ struct BinaryTreeNode {
   explicit BinaryTreeNode(T data) : data(data){};
 };
 
+void bst(BinaryTreeNode<int>* lft, BinaryTreeNode<int>* rht) {
+  if(lft != nullptr) lft->next = rht;
+  if(lft && lft->left) lft->left->next = lft->right.get();
+  if(lft && lft->right.get() && rht) lft->right->next = rht->left.get();
+  if(lft) bst(lft->left.get(), lft->right.get());
+  if(rht) bst(rht->left.get(), rht->right.get());
+}
+
 void ConstructRightSibling(BinaryTreeNode<int>* tree) {
-  // TODO - you fill in here.
+  bst(tree, nullptr);
   return;
 }
 namespace test_framework {

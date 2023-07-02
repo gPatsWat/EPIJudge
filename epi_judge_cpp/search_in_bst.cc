@@ -3,8 +3,9 @@
 #include "bst_node.h"
 #include "test_framework/generic_test.h"
 using std::unique_ptr;
+
 BstNode<int>* SearchBST(const unique_ptr<BstNode<int>>& tree, int key) {
-  // TODO - you fill in here.
+
   return nullptr;
 }
 int SearchBSTWrapper(const unique_ptr<BstNode<int>>& tree, int key) {

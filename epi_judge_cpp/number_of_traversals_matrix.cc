@@ -1,8 +1,20 @@
 #include "test_framework/generic_test.h"
 
+int dp_solver(int n, int m, std::vector<std::vector<int>>& dp) {
+  if(n == 0) return 1;
+  else if(m == 0) return 1;
+
+  if(dp[n][m] == 0) {
+    dp[n][m] = dp_solver(n-1, m, dp) + dp_solver(n, m-1, dp);
+  }
+
+  return dp[n][m];
+}
+
 int NumberOfWays(int n, int m) {
-  // TODO - you fill in here.
-  return 0;
+  if(!(n > 0 && m > 0)) return 0;
+  std::vector<std::vector<int>> dp(n, std::vector<int>(m, 0));
+  return dp_solver(n-1, m-1, dp);
 }
 
 int main(int argc, char* argv[]) {

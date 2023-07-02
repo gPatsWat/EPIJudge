@@ -6,8 +6,33 @@
 using std::deque;
 using std::vector;
 
+bool isvalid(vector<deque<bool>>* image_ptr, int x, int y) {
+  if(x >= 0 && x < image_ptr[0].size() && y >= 0 && y < image_ptr->size()) return true;
+  return false;
+}
+
+void bfs(int x, int y, vector<deque<bool>>* image_ptr) {
+  std::queue<std::pair<int, int>> q;
+  vector<std::pair<int,int>> dir = {{-1,0},{1,0},{0,1},{0,-1}};
+  bool initial_color = (*image_ptr)[x].at(y);
+  bool flip_color = !initial_color;
+  q.push({x, y});
+
+  while(!q.empty()) {
+    auto top = q.front();
+    q.pop();
+    (*image_ptr)[top.first][top.second] = flip_color;
+
+    for(auto i : dir) {
+      if(isvalid(image_ptr, top.first + i.first, top.second + i.second) && (*image_ptr)[top.first + i.first][top.second + i.second] == initial_color)
+        q.push({top.first + i.first, top.second + i.second});
+    }
+  }
+}
+
 void FlipColor(int x, int y, vector<deque<bool>>* image_ptr) {
-  // TODO - you fill in here.
+  if(image_ptr == nullptr) return;
+  bfs(x, y, image_ptr);
   return;
 }
 vector<vector<int>> FlipColorWrapper(TimedExecutor& executor, int x, int y,
