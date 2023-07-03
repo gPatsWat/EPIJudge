@@ -1,39 +1,45 @@
 #include "list_node.h"
 #include "test_framework/generic_test.h"
+#include <cstddef>
+#include <memory>
+
+shared_ptr<ListNode<int>> foo(shared_ptr<ListNode<int>> s, shared_ptr<ListNode<int>> t) {
+  if(s == t) return s;
+  shared_ptr<ListNode<int>> rev_tail = foo(s->next, t);
+  rev_tail->next = s;
+  return s;
+}
 
 shared_ptr<ListNode<int>> ReverseSublist(shared_ptr<ListNode<int>> L, int start,
                                          int finish) {
-  if(L == nullptr) return L;
-  if(start >= finish) return L;
+  if(L == nullptr) return nullptr;
+  if(L->next == nullptr) return L;
+  if(start == finish) return L;
+  shared_ptr<ListNode<int>> s, sd, t, td, iter = L;
+  bool is_start = start == 1;
+  bool is_end;
 
-  shared_ptr<ListNode<int>> st = L, nd = L, st2 = nullptr, nd2 = nullptr, iter = nullptr, prev = nullptr, temp = nullptr;
-  for(int i = 1;i < start;i++) {
-    if(i == start-1) st2 = st;
-    st = st->next;
-  }
-  for(int i = 1;(i < finish) && (nd->next != nullptr);i++) {
-    nd = nd->next;
-  }
-
-  nd2 = nd->next;
-  iter = st;
-
-  prev = nd2;
-  temp = iter->next;
-  // std::cout << "nd2 data: " << nd2->data << "\n";
-  while(iter != nd2) {
-    iter->next = prev;
-    prev = iter;
-    iter = temp;
-    if(temp != nullptr)
-    temp = temp->next;
-    else break;
+  for(int i = 1;i<finish;i++) {
+    if(i == start-1) sd = iter;
+    if(i == start) s = iter;
+    iter = iter->next;
   }
 
-  if(start == 1) return nd;
-  else st2->next = nd;
+  is_end = iter->next == nullptr;
+  td = iter->next;
 
-  return L;
+  foo(s, t);
+
+  if(!is_end) {
+    s->next = td;
+  }
+  else s->next = nullptr;
+
+  if(is_start) return t;
+  else {
+    sd->next = t;
+    return L;
+  }
 }
 
 int main(int argc, char* argv[]) {

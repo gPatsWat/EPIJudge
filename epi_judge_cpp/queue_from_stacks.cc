@@ -7,14 +7,42 @@
 #include "test_framework/test_failure.h"
 using std::length_error;
 class Queue {
+  std::stack<int> s1, s2;
+  bool enqueue = false;
  public:
   void Enqueue(int x) {
-    // TODO - you fill in here.
+    if(!enqueue) {
+      swap_stack(s1, s2);
+      enqueue = true;
+    }
+    s1.push(x);    
     return;
   }
   int Dequeue() {
-    // TODO - you fill in here.
-    return 0;
+    if(enqueue) {
+      swap_stack(s1, s2);
+      enqueue = false;
+    }
+    int temp = s2.top();
+    s2.pop();
+    return temp;
+  }
+
+  void swap_stack(std::stack<int>& s1, std::stack<int>& s2) {
+    if(s1.empty()) {
+      while(!s2.empty()) {
+        int temp = s2.top();
+        s2.pop();
+        s1.push(temp);
+      }
+    }
+    else if(s2.empty()) {
+      while(!s1.empty()) {
+        int temp = s1.top();
+        s1.pop();
+        s2.push(temp);
+      }
+    }
   }
 };
 struct QueueOp {

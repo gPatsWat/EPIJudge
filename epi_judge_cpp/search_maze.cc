@@ -15,9 +15,45 @@ struct Coordinate {
 
   int x, y;
 };
+
+vector<std::pair<int, int>> dir = {{-1,0},{0,-1},{0,1},{1,0}};
+
+bool isvalid(vector<vector<Color>> maze, int x, int y) {
+  if((0 <= x) && (x < maze.size()) && (0 <= y) && (y < maze[0].size())) return true;
+  return false;
+}
+
+bool dfs(vector<vector<Color>>& maze, const Coordinate& s, const Coordinate& e,
+vector<Coordinate>& path, vector<vector<bool>>& vis) {
+  path.push_back(s);
+  if(vis[s.x][s.y]) {
+    path.pop_back();
+    return false;
+  }
+  
+  if(s == e) return true;
+
+
+  vis[s.x][s.y] = true;
+
+  for(auto i : dir) {
+      if(!(i.first == 0 && i.second == 0) && isvalid(maze, s.x + i.first, s.y + i.second) && (maze[s.x + i.first][s.y + i.second] == Color::kWhite) && dfs(maze, {s.x + i.first, s.y + i.second}, e, path, vis)) return true;
+  }
+
+  path.pop_back();
+  return false;
+}
+
 vector<Coordinate> SearchMaze(vector<vector<Color>> maze, const Coordinate& s,
                               const Coordinate& e) {
-  // TODO - you fill in here.
+  vector<Coordinate> path;
+  vector<vector<bool>> vis(maze.size(), vector<bool> (maze[0].size(), false));
+  if((maze.size() == 0) || (maze[0].size() == 0) || !isvalid(maze, s.x, s.y)
+   || !isvalid(maze, e.x, e.y) || (maze[s.x][s.y] == Color::kBlack) 
+   || (maze[e.x][e.y] == Color::kBlack)) {
+    return {};
+   }
+  if(dfs(maze, s, e, path, vis)) return path;
   return {};
 }
 

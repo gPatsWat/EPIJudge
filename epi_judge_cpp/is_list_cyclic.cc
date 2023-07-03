@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <memory>
 
 #include "list_node.h"
@@ -7,8 +8,37 @@
 using std::shared_ptr;
 
 shared_ptr<ListNode<int>> HasCycle(const shared_ptr<ListNode<int>>& head) {
-  // TODO - you fill in here.
-  return nullptr;
+  auto slow = head, fast = head, start = head;
+  if(head == nullptr) return nullptr;
+  while(slow != nullptr && fast != nullptr) {
+    slow = slow->next;
+    fast = fast->next;
+    if(fast == nullptr) return nullptr;
+    else fast = fast->next;
+    if(fast == slow) {
+      start = slow;
+      break;
+    }
+  }
+  if(slow == nullptr || fast == nullptr) return nullptr;
+  auto st = start->next;
+  int i = 0;
+  while(st != start) {
+    st = st->next;
+    i++;
+  }
+  i++;
+  st = head;
+  while(i!=0) {
+    st = st->next;
+    i--;
+  }
+  auto iter = head;
+  while(iter != st) {
+    st=st->next;
+    iter = iter->next;
+  }
+  return iter;
 }
 void HasCycleWrapper(TimedExecutor& executor,
                      const shared_ptr<ListNode<int>>& head, int cycle_idx) {

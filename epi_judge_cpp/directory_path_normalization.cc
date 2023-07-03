@@ -1,12 +1,11 @@
-#include <regex>
-#include <sstream>
 #include <string>
+#include <sstream>
 
 #include "test_framework/generic_test.h"
 using std::string;
 
 string ShortestEquivalentPath(const string& path) {
-  if (path.empty()) return "";
+    if (path.empty()) return "";
   if (path == "..") return "..";
   if (path == ".") return ".";
 

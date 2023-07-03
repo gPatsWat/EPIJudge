@@ -1,3 +1,5 @@
+#include <limits>
+#include <stack>
 #include <stdexcept>
 
 #include "test_framework/generic_test.h"
@@ -7,23 +9,31 @@ using std::length_error;
 
 class Stack {
  public:
+  std::stack<std::pair<int,int>> stck;
   bool Empty() const {
-    // TODO - you fill in here.
+    if(stck.size() == 0)    
     return true;
+    else return false;
   }
+
   int Max() const {
-    // TODO - you fill in here.
-    return 0;
+    if(stck.empty()) return std::numeric_limits<int>::min();
+    return stck.top().second;
   }
+
   int Pop() {
-    // TODO - you fill in here.
-    return 0;
+    if(stck.empty()) return std::numeric_limits<int>::min();
+    int temp = stck.top().first;
+    stck.pop();
+    return temp;
   }
+
   void Push(int x) {
-    // TODO - you fill in here.
-    return;
+    if(stck.empty() || (x > stck.top().second)) stck.push({x,x});
+    else stck.push({x, stck.top().second});
   }
 };
+
 struct StackOp {
   std::string op;
   int argument;

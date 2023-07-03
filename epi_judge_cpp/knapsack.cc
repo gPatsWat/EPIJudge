@@ -9,8 +9,22 @@ struct Item {
 };
 
 int OptimumSubjectToCapacity(const vector<Item>& items, int capacity) {
-  // TODO - you fill in here.
-  return 0;
+  vector<std::vector<int>> dp(items.size(), vector<int>(capacity+1, 0));
+  if(items.empty()) return 0;
+  for(int j = 1;j < dp[0].size();j++) {
+    if(items[0].weight < j) dp[0][j] = items[0].value;
+  }
+
+  for(int i = 1;i < items.size();i++) {
+    for(int j = 1;j < dp[0].size();j++) {
+      if(j >= items[i].weight) {
+        dp[i][j] = std::max(dp[i-1][j], dp[i-1][j-items[i].weight]+items[i].value);
+      }
+      else dp[i][j] = dp[i-1][j];
+    }
+  }
+
+  return dp[items.size()-1][capacity];
 }
 namespace test_framework {
 template <>

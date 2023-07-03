@@ -8,8 +8,45 @@ using std::shared_ptr;
 
 shared_ptr<ListNode<int>> OverlappingNoCycleLists(
     shared_ptr<ListNode<int>> l0, shared_ptr<ListNode<int>> l1) {
-  // TODO - you fill in here.
-  return nullptr;
+  auto i = l0;
+  auto j = l1;
+  if(i == nullptr) return nullptr;
+  if(j == nullptr) return nullptr;
+
+  int n1 = 0, n2 = 0;
+  while(i->next != nullptr) {
+    n1++;
+    // std::cout << "l1 iter" << std::endl;
+    i = i->next;
+  }
+
+  while(j->next != nullptr) {
+    n2++;
+    // std::cout << "l2 iter" << std::endl;
+    j = j->next;
+  }
+
+  if(i != j)  {
+    // std::cout << "no match" << std::endl;
+    return nullptr;
+  }
+
+  int diff = abs(n2 - n1), count = 0;
+  std::cout << diff << std::endl;
+  i = n1>n2?l0:l1;
+  j = n1>n2?l1:l0;
+
+  while(diff != 0) {
+    i = i->next;
+    diff--;
+  }
+
+  while(i != j) {
+    i = i->next;
+    j = j->next;
+  }
+
+  return i;
 }
 void OverlappingNoCycleListsWrapper(TimedExecutor& executor,
                                     shared_ptr<ListNode<int>> l0,

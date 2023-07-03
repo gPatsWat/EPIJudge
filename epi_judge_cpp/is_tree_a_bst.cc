@@ -7,13 +7,14 @@
 using std::unique_ptr;
 
 bool isBSTUtil(BinaryTreeNode<int>* tree, int mn, int mx) {
-  if(tree == nullptr) return true;
+  if(!tree) return true;
+  if(tree->data < mn || tree->data > mx) return false;
 
-  if(tree->data >= mn && tree->data <= mx && isBSTUtil(tree->left.get(), mn, tree->data) && isBSTUtil(tree->right.get(), tree->data, mx)) return true;
-  return false;
+  return isBSTUtil(tree->left.get(), mn, tree->data) && isBSTUtil(tree->right.get(), tree->data, mx);
 }
 
 bool IsBinaryTreeBST(const unique_ptr<BinaryTreeNode<int>>& tree) {
+
   return isBSTUtil(tree.get(), std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
 }
 

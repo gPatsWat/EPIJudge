@@ -312,7 +312,7 @@ problem_mapping = {
         },
         "5.10 Permute the elements of an array": {
             "C++: apply_permutation.cc": {
-                "passed": 0,
+                "passed": 101,
                 "total": 101
             },
             "Java: ApplyPermutation.java": {
@@ -410,7 +410,7 @@ problem_mapping = {
         },
         "5.17 The Sudoku checker problem": {
             "C++: is_valid_sudoku.cc": {
-                "passed": 0,
+                "passed": 34,
                 "total": 745
             },
             "Java: IsValidSudoku.java": {
@@ -538,7 +538,7 @@ problem_mapping = {
         },
         "6.05 Test palindromicity": {
             "C++: is_string_palindromic_punctuation.cc": {
-                "passed": 0,
+                "passed": 305,
                 "total": 305
             },
             "Java: IsStringPalindromicPunctuation.java": {
@@ -580,7 +580,7 @@ problem_mapping = {
         },
         "6.08 Convert from Roman to decimal": {
             "C++: roman_to_integer.cc": {
-                "passed": 0,
+                "passed": 3999,
                 "total": 3999
             },
             "Java: RomanToInteger.java": {
@@ -718,7 +718,7 @@ problem_mapping = {
         },
         "7.03 Test for cyclicity": {
             "C++: is_list_cyclic.cc": {
-                "passed": 0,
+                "passed": 102,
                 "total": 102
             },
             "Java: IsListCyclic.java": {
@@ -732,7 +732,7 @@ problem_mapping = {
         },
         "7.04 Test for overlapping lists---lists are cycle-free": {
             "C++: do_terminated_lists_overlap.cc": {
-                "passed": 0,
+                "passed": 106,
                 "total": 106
             },
             "Java: DoTerminatedListsOverlap.java": {
@@ -774,7 +774,7 @@ problem_mapping = {
         },
         "7.07 Remove the kth last element from a list": {
             "C++: delete_kth_last_from_list.cc": {
-                "passed": 0,
+                "passed": 306,
                 "total": 306
             },
             "Java: DeleteKthLastFromList.java": {
@@ -874,7 +874,7 @@ problem_mapping = {
     "Chapter 08: Stacks and Queues": {
         "8.01 Implement a stack with max API": {
             "C++: stack_with_max.cc": {
-                "passed": 0,
+                "passed": 101,
                 "total": 101
             },
             "Java: StackWithMax.java": {
@@ -888,7 +888,7 @@ problem_mapping = {
         },
         "8.02 Evaluate RPN expressions": {
             "C++: evaluate_rpn.cc": {
-                "passed": 0,
+                "passed": 108,
                 "total": 108
             },
             "Java: EvaluateRpn.java": {
@@ -902,7 +902,7 @@ problem_mapping = {
         },
         "8.03 Is a string well-formed?": {
             "C++: is_valid_parenthesization.cc": {
-                "passed": 0,
+                "passed": 78,
                 "total": 78
             },
             "Java: IsValidParenthesization.java": {
@@ -916,7 +916,7 @@ problem_mapping = {
         },
         "8.04 Normalize pathnames": {
             "C++: directory_path_normalization.cc": {
-                "passed": 0,
+                "passed": 1,
                 "total": 255
             },
             "Java: DirectoryPathNormalization.java": {
@@ -944,7 +944,7 @@ problem_mapping = {
         },
         "8.06 Compute binary tree nodes in order of increasing depth": {
             "C++: tree_level_order.cc": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             },
             "Java: TreeLevelOrder.java": {
@@ -972,7 +972,7 @@ problem_mapping = {
         },
         "8.08 Implement a queue using stacks": {
             "C++: queue_from_stacks.cc": {
-                "passed": 0,
+                "passed": 65,
                 "total": 65
             },
             "Java: QueueFromStacks.java": {
@@ -1002,7 +1002,7 @@ problem_mapping = {
     "Chapter 09: Binary Trees": {
         "9.01 Test if a binary tree is height-balanced": {
             "C++: is_tree_balanced.cc": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             },
             "Java: IsTreeBalanced.java": {
@@ -1016,7 +1016,7 @@ problem_mapping = {
         },
         "9.02 Test if a binary tree is symmetric": {
             "C++: is_tree_symmetric.cc": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             },
             "Java: IsTreeSymmetric.java": {
@@ -1796,7 +1796,7 @@ problem_mapping = {
         },
         "14.01 Test if a binary tree satisfies the BST property": {
             "C++: is_tree_a_bst.cc": {
-                "passed": 0,
+                "passed": 3139,
                 "total": 3139
             },
             "Java: IsTreeABst.java": {
@@ -2458,7 +2458,7 @@ problem_mapping = {
     "Chapter 18: Graphs": {
         "18.01 Search a maze": {
             "C++: search_maze.cc": {
-                "passed": 0,
+                "passed": 101,
                 "total": 101
             },
             "Java: SearchMaze.java": {
